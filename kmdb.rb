@@ -68,7 +68,7 @@
 # The Dark Knight Rises  Anne Hathaway         Selina Kyle
 
 # Delete existing data, so you'll start fresh each time this script is run.
-# Use `Model.destroy_all` code.
+`Model.destroy_all`
 # TODO!
 
 # Generate models and tables, according to the domain model.
