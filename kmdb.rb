@@ -79,6 +79,8 @@ Role.destroy_all
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
 # TODO!
+
+#Movie
 batman_begins = Movie.new 
 batman_begins["title"] = "Batman Begins"
 batman_begins["year_released"] = '2005'
@@ -87,7 +89,7 @@ batman_begins["rated"] = "PG-13"
 batman_begins.save
 
 the_dark_knight = Movie.new 
-the_dark_knight["title"] = "THe Dark Knight"
+the_dark_knight["title"] = "The Dark Knight"
 the_dark_knight["year_released"] = '2008'
 the_dark_knight["rated"] = "PG-13"
 #the_dark_knight["studio"] = "Warner Bros."
@@ -99,16 +101,26 @@ the_dark_knight_rises["year_released"] = '2012'
 the_dark_knight_rises["rated"] = "PG-13"
 #the_dark_knight_rises["studio"] = "Warner Bros."
 the_dark_knight_rises.save
-puts "movies: #{Movie.all.count}"
 
+#Studio
 warner_bros = Studio.new 
 warner_bros["name"] = "Warner Bros."
 warner_bros.save
 
+#Actor
 actors = Actor.new 
 actors["name"] = "Christian Bale"
+actors.save
+
+actors = Actor.new 
 actors["name"] = "Michael Caine"
+actors.save
+
+actors = Actor.new 
 actors["name"] = "Liam Neeson"
+actors.save
+
+actors = Actor.new 
 actors["name"] = "Katie Holmes"
 actors["name"] = "Gary Oldman"
 actors["name"] = "Heath Ledger"
@@ -119,18 +131,83 @@ actors["name"] = "Joseph Gordon-Levitt"
 actors["name"] = "Anne Hathaway"
 actors.save
 
+actors = Actor.new 
+actors["name"] = "Gary Oldman"
+actors.save
+
+actors = Actor.new 
+actors["name"] = "Heath Ledger"
+actors.save
+
+actors = Actor.new 
+actors["name"] = "Aaron Eckhart"
+actors.save
+
+actors = Actor.new 
+actors["name"] = "Maggie Gyllenhaal"
+actors.save
+
+actors = Actor.new 
+actors["name"] = "Tom Hardy"
+actors.save
+
+actors = Actor.new 
+actors["name"] = "Joseph Gordon-Levitt"
+actors.save
+
+actors = Actor.new 
+actors["name"] = "Anne Hathaway"
+actors.save
+
+
 roles = Role.new
-roles["chracter_name"] = "Bruce Wanye"
-roles["chracter_name"] = "Alfred"
-roles["chracter_name"] = "Ras Al Ghul"
-roles["chracter_name"] = "Rachel Dawes"
-roles["chracter_name"] = "Commissioner Gordon"
-roles["chracter_name"] = "Joker"
-roles["chracter_name"] = "Harvey Dent"
-roles["chracter_name"] = "Rachel Dawes"
-roles["chracter_name"] = "Bane"
-roles["chracter_name"] = "John Blake"
-roles["chracter_name"] = "Selina Kyle"
+roles["character_name"] = "Bruce Wanye"
+roles.save
+
+roles = Role.new
+roles["character_name"] = "Alfred"
+roles.save
+
+roles = Role.new
+roles["character_name"] = "Ras Al Ghul"
+roles.save
+
+roles = Role.new
+roles["character_name"] = "Rachel Dawes"
+roles.save
+
+roles = Role.new
+roles["character_name"] = "Commissioner Gordon"
+roles.save
+
+roles = Role.new
+roles["character_name"] = "Joker"
+roles.save
+
+roles = Role.new
+roles["character_name"] = "Harvey Dent"
+roles.save
+
+roles = Role.new
+roles["character_name"] = "Rachel Dawes"
+roles.save
+
+roles = Role.new
+roles["character_name"] = "Bane"
+roles.save
+
+roles = Role.new
+roles["character_name"] = "John Blake"
+roles.save
+
+roles = Role.new
+roles["character_name"] = "Selina Kyle"
+roles.save
+
+#puts Movie.all.count
+#puts Studio.all.count
+#puts Actor.all.count
+#puts Role.all.count
 
 
 # Prints a header for the movies output
@@ -139,7 +216,23 @@ puts "======"
 puts ""
 
 # Query the movies data and loop through the results to display the movies output.
-# TODO!
+
+# Like the second query, I'm unable to join to the studio table for some reason. 
+
+movies = Movie.all
+studios = Studio.all
+
+for movie in movies
+    #Display title, year released, and rating
+    title = movie["title"]
+  year_released = movie["year_released"]
+    rated = movie["rated"]
+    #Find studio
+    studio_id = Studio.find_by({"id" => movie["studio_id"]}) # this doesn't seem to be working, not sure why
+    studio_name = studio_id["name"] #------this seems to be causing issues, not sure why
+ puts "#{title} #{year_released} #{rated}"
+end 
+
 
 # Prints a header for the cast output
 puts ""
@@ -148,4 +241,22 @@ puts "========"
 puts ""
 
 # Query the cast data and loop through the results to display the cast output for each movie.
-# TODO!
+
+# I'm unable to figure this out after several hours of reviewing notes/labs and attempting different methods. 
+# Not sure what I'm doing wrong. 
+
+movies = Movie.all
+studios = Studio.all
+actors = Actor.all
+roles = Role.all
+
+for role in roles
+    #Display title
+    movie_id = Movie.find.by({"movie_id" => role["movie_id"] })
+    movie_name = movie_id["name"]
+    #Find actor
+    actor = Actor.find.by({"actor_id" => role["actor_id"] })
+    #Find role
+    character_name = role["character_name"]
+   puts "#{movie_name} #{actor} #{character_name}"
+  end 
