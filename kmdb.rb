@@ -68,15 +68,70 @@
 # The Dark Knight Rises  Anne Hathaway         Selina Kyle
 
 # Delete existing data, so you'll start fresh each time this script is run.
-`Model.destroy_all`
-# TODO!
+Movie.destroy_all
+Studio.destroy_all
+Actor.destroy_all
+Role.destroy_all
 
 # Generate models and tables, according to the domain model.
-# TODO!
+# TODO! DONE
 
 # Insert data into the database that reflects the sample data shown above.
 # Do not use hard-coded foreign key IDs.
 # TODO!
+batman_begins = Movie.new 
+batman_begins["title"] = "Batman Begins"
+batman_begins["year_released"] = '2005'
+batman_begins["rated"] = "PG-13"
+#batman_begins["studio"] = "Warner Bros."
+batman_begins.save
+
+the_dark_knight = Movie.new 
+the_dark_knight["title"] = "THe Dark Knight"
+the_dark_knight["year_released"] = '2008'
+the_dark_knight["rated"] = "PG-13"
+#the_dark_knight["studio"] = "Warner Bros."
+the_dark_knight.save
+
+the_dark_knight_rises = Movie.new 
+the_dark_knight_rises["title"] = "The Dark Knight Rises"
+the_dark_knight_rises["year_released"] = '2012'
+the_dark_knight_rises["rated"] = "PG-13"
+#the_dark_knight_rises["studio"] = "Warner Bros."
+the_dark_knight_rises.save
+puts "movies: #{Movie.all.count}"
+
+warner_bros = Studio.new 
+warner_bros["name"] = "Warner Bros."
+warner_bros.save
+
+actors = Actor.new 
+actors["name"] = "Christian Bale"
+actors["name"] = "Michael Caine"
+actors["name"] = "Liam Neeson"
+actors["name"] = "Katie Holmes"
+actors["name"] = "Gary Oldman"
+actors["name"] = "Heath Ledger"
+actors["name"] = "Aaron Eckhart"
+actors["name"] = "Maggie Gyllenhaal"
+actors["name"] = "Tom Hardy"
+actors["name"] = "Joseph Gordon-Levitt"
+actors["name"] = "Anne Hathaway"
+actors.save
+
+roles = Role.new
+roles["chracter_name"] = "Bruce Wanye"
+roles["chracter_name"] = "Alfred"
+roles["chracter_name"] = "Ras Al Ghul"
+roles["chracter_name"] = "Rachel Dawes"
+roles["chracter_name"] = "Commissioner Gordon"
+roles["chracter_name"] = "Joker"
+roles["chracter_name"] = "Harvey Dent"
+roles["chracter_name"] = "Rachel Dawes"
+roles["chracter_name"] = "Bane"
+roles["chracter_name"] = "John Blake"
+roles["chracter_name"] = "Selina Kyle"
+
 
 # Prints a header for the movies output
 puts "Movies"
